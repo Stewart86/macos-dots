@@ -82,6 +82,7 @@ if command -v fnm >/dev/null 2>&1; then
 fi
 
 if command -v bun >/dev/null 2>&1; then
+  export PATH="$HOME/.bun/bin:$PATH"
   bun add -g opencode-ai || true
 fi
 

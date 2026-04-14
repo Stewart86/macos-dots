@@ -1,5 +1,5 @@
 eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv)"
-export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+export PATH="$HOME/.bun/bin:/opt/homebrew/opt/rustup/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 
 if command -v brew >/dev/null 2>&1; then
