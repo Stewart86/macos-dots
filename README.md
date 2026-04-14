@@ -13,10 +13,12 @@ git clone https://github.com/Stewart86/macos-dots.git ~/macos-dots && cd ~/macos
 - installs Homebrew formulae and app casks from `Brewfile`
 - installs Oh My Zsh and core plugins
 - links the tracked config files into `~`
+- bootstraps OpenCode CLI and Codex CLI/app
 - keeps backups of existing files under `~/.dotfiles-backups/<timestamp>/`
 
 ## Notes
 
 - Git identity is intentionally not managed here
 - No secrets, SSH keys, AWS credentials, or work-specific creds are included
+- OpenCode config is sanitized, Context7 stays disabled until you add your own key
 - Helium is intentionally skipped because the Homebrew cask is deprecated

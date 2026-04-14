@@ -50,14 +50,22 @@ backup_if_exists "$HOME/Library/Application Support/Zed/settings.json"
 backup_if_exists "$HOME/Library/Application Support/Zed/keymap.json"
 backup_if_exists "$HOME/.config/yazi/yazi.toml"
 backup_if_exists "$HOME/.config/lazygit/config.yml"
+backup_if_exists "$HOME/.config/opencode/opencode.jsonc"
+backup_if_exists "$HOME/.config/opencode/agent"
+backup_if_exists "$HOME/.config/opencode/skill"
+backup_if_exists "$HOME/.config/nvim"
 
 link_path "$REPO_DIR/.zshrc" "$HOME/.zshrc"
 link_path "$REPO_DIR/.config/ghostty/config" "$HOME/.config/ghostty/config"
 link_path "$REPO_DIR/.config/ohmyposh/zen.toml" "$HOME/.config/ohmyposh/zen.toml"
 link_path "$REPO_DIR/.config/yazi/yazi.toml" "$HOME/.config/yazi/yazi.toml"
 link_path "$REPO_DIR/.config/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
+link_path "$REPO_DIR/.config/opencode/opencode.jsonc" "$HOME/.config/opencode/opencode.jsonc"
+link_path "$REPO_DIR/.config/opencode/agent" "$HOME/.config/opencode/agent"
+link_path "$REPO_DIR/.config/opencode/skill" "$HOME/.config/opencode/skill"
 link_path "$REPO_DIR/.config/zed/settings.json" "$HOME/Library/Application Support/Zed/settings.json"
 link_path "$REPO_DIR/.config/zed/keymap.json" "$HOME/Library/Application Support/Zed/keymap.json"
+link_path "$REPO_DIR/.config/nvim" "$HOME/.config/nvim"
 
 chmod go-w "$(brew --prefix)/share" || true
 chmod -R go-w "$(brew --prefix)/share/zsh" || true
@@ -71,6 +79,14 @@ if command -v fnm >/dev/null 2>&1; then
   fnm default lts-latest
   corepack enable || true
   corepack prepare pnpm@latest --activate || true
+fi
+
+if command -v bun >/dev/null 2>&1; then
+  bun add -g opencode-ai || true
+fi
+
+if ! command -v codex >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
+  npm install -g @openai/codex || true
 fi
 
 echo
