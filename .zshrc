@@ -8,7 +8,6 @@ fi
 
 plugins=(
   git
-  gh
   sudo
   dirhistory
   web-search
