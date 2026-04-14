@@ -66,7 +66,7 @@ export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 rustup default stable || true
 
 if command -v fnm >/dev/null 2>&1; then
-  eval "$(fnm env --use-on-cd --shell zsh)"
+  eval "$(fnm env --shell bash)"
   fnm install --lts
   fnm default lts-latest
   corepack enable || true
