@@ -1,0 +1,198 @@
+{
+  "ui_font_weight": 100.0,
+  "buffer_font_weight": 200.0,
+  "colorize_brackets": true,
+  "indent_guides": {
+    "coloring": "indent_aware",
+    "background_coloring": "indent_aware"
+  },
+  "soft_wrap": "editor_width",
+  "auto_signature_help": true,
+  "minimap": {
+    "show": "always"
+  },
+  "context_servers": {
+    "perplexity": {
+      "enabled": false,
+      "settings": {}
+    },
+    "context7": {
+      "command": "bunx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    },
+    "github": {
+      "enabled": false,
+      "settings": {}
+    }
+  },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_features": {
+    "ss01": true,
+    "ss02": true,
+    "ss20": true
+  },
+  "agent": {
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5-mini"
+    },
+    "model_parameters": []
+  },
+  "vim_mode": true,
+  "relative_line_numbers": "enabled",
+  "vertical_scroll_margin": 8,
+  "ui_font_size": 12.0,
+  "buffer_font_size": 10.0,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Gruvbox Dark Hard"
+  },
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true
+  },
+  "inlay_hints": {
+    "enabled": true
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": true,
+      "show_commit_summary": true
+    }
+  },
+  "preferred_line_length": 160,
+  "tab_size": 4,
+  "lsp": {
+    "tailwindcss-language-server": {
+      "settings": {
+        "classAttributes": ["class", "className", "ngClass", "styles"]
+      }
+    },
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "tsserver": {
+            "maxTsServerMemory": 4096
+          },
+          "inlayHints": {
+            "parameterNames": {
+              "enabled": "all",
+              "suppressWhenArgumentMatchesName": true
+            },
+            "parameterTypes": {
+              "enabled": true
+            },
+            "variableTypes": {
+              "enabled": true,
+              "suppressWhenTypeMatchesName": true
+            },
+            "propertyDeclarationTypes": {
+              "enabled": false
+            },
+            "functionLikeReturnTypes": {
+              "enabled": false
+            },
+            "enumMemberValues": {
+              "enabled": false
+            }
+          }
+        },
+        "javascript": {
+          "tsserver": {
+            "maxTsServerMemory": 4096
+          },
+          "inlayHints": {
+            "parameterNames": {
+              "enabled": "all",
+              "suppressWhenArgumentMatchesName": false
+            },
+            "parameterTypes": {
+              "enabled": true
+            },
+            "variableTypes": {
+              "enabled": false,
+              "suppressWhenTypeMatchesName": true
+            },
+            "propertyDeclarationTypes": {
+              "enabled": true
+            },
+            "functionLikeReturnTypes": {
+              "enabled": true
+            },
+            "enumMemberValues": {
+              "enabled": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "languages": {
+    "Markdown": {
+      "format_on_save": "on"
+    },
+    "JavaScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      },
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      }
+    },
+    "TypeScript": {
+      "inlay_hints": {
+        "enabled": true,
+        "show_parameter_hints": false,
+        "show_other_hints": true,
+        "show_type_hints": true
+      }
+    },
+    "Python": {
+      "language_servers": ["ruff", "pyright"],
+      "format_on_save": "on",
+      "formatter": ["auto"]
+    }
+  },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/out",
+    "**/dist",
+    "**/.husky",
+    "**/.turbo",
+    "**/.next",
+    "**/.storybook",
+    "**/.tap",
+    "**/.nyc_output",
+    "**/report",
+    "**/node_modules",
+    "**/.vercel",
+    "next-env.d.ts",
+    "tsconfig.tsbuildinfo",
+    "tsconfig.*.tsbuildinfo"
+  ],
+  "project_panel": {
+    "button": true,
+    "dock": "left",
+    "git_status": true,
+    "indent_size": 18,
+    "entry_spacing": "standard"
+  }
+}

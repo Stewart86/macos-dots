@@ -1,0 +1,21 @@
+macos-option-as-alt = true
+
+font-size = 12
+font-family = JetBrains Mono
+font-feature = ss20
+font-feature = ss02
+font-feature = ss01
+font-thicken = true
+grapheme-width-method = unicode
+
+background-opacity = 0.95
+window-decoration = true
+window-padding-balance = true
+
+quit-after-last-window-closed = true
+quit-after-last-window-closed-delay = 5m
+
+keybind = ctrl+shift+k=scroll_page_up
+keybind = ctrl+shift+j=scroll_page_down
+keybind = shift+enter=text:\n
+keybind = global:ctrl+grave_accent=toggle_quick_terminal

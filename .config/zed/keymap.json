@@ -1,0 +1,130 @@
+[
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "shift-k": "editor::ContextMenuPrevious",
+      "shift-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious",
+      "ctrl-j": "editor::ContextMenuNext",
+      "pageup": "editor::ContextMenuFirst",
+      "pagedown": "editor::ContextMenuLast"
+    }
+  },
+  {
+    "context": "VimControl && !menu && vim_mode == normal",
+    "bindings": {
+      "n": "search::SelectNextMatch",
+      "N": "search::SelectPreviousMatch"
+    }
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      "space": null,
+      "space w": "workspace::Save",
+      "space W": "workspace::SaveAll"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "space l a": "editor::ToggleCodeActions",
+      "space l R": "editor::Rename",
+      "space l r": "editor::FindAllReferences",
+      "space m k": "editor::AddSelectionAbove",
+      "space m j": "editor::AddSelectionBelow",
+      "space [": "editor::SelectLargerSyntaxNode",
+      "space ]": "editor::SelectSmallerSyntaxNode",
+      "space m m": "editor::SelectAllMatches",
+      "space m l": ["editor::SelectNext", { "replace_newest": false }],
+      "space m h": ["editor::SelectPrevious", { "replace_newest": false }]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "space /": "editor::ToggleComments",
+      "space s": "editor::SortLinesCaseSensitive",
+      "space j": "editor::MoveLineDown",
+      "space k": "editor::MoveLineUp"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  {
+    "context": "ProjectPanel || GitPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView",
+    "bindings": {
+      "space C": "pane::CloseAllItems",
+      "space Q": "zed::Quit",
+      "space c": "pane::CloseActiveItem",
+      "space e": "workspace::ToggleLeftDock",
+      "space f f": "file_finder::Toggle",
+      "space f o": "file_finder::Toggle",
+      "space f p": "projects::OpenRecent",
+      "space f w": "workspace::NewSearch",
+      "space o": "pane::RevealInProjectPanel",
+      "space r o": "workspace::ToggleRightDock",
+      "space b o": "workspace::ToggleBottomDock",
+      "space q": "pane::CloseActiveItem",
+      "space t h": "workspace::NewTerminal",
+      "space u h": "editor::ToggleInlayHints",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-shift-l": "vim::ResizePaneRight",
+      "ctrl-shift-h": "vim::ResizePaneLeft",
+      "ctrl-shift-j": "vim::ResizePaneDown",
+      "ctrl-shift-k": "vim::ResizePaneUp",
+      "|": "pane::SplitVertical",
+      "\\": "pane::SplitHorizontal",
+      "shift-l": "pane::ActivateNextItem",
+      "shift-h": "pane::ActivatePreviousItem"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-h": "workspace::ActivatePaneLeft"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "A": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      "l": ["workspace::SendKeystrokes", "enter space e"]
+    }
+  },
+  {
+    "context": "Picker",
+    "bindings": {
+      "K": "menu::SelectPrevious",
+      "J": "menu::SelectNext"
+    }
+  },
+  {
+    "context": "FileFinder",
+    "bindings": {
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl-l": "menu::SelectNext"
+    }
+  },
+  {
+    "context": "Editor && !Picker && vim_mode != insert",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  }
+]

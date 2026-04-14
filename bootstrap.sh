@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BACKUP_ROOT="$HOME/.dotfiles-backups/$(date +%Y%m%d-%H%M%S)"
+
+need_cmd() {
+  command -v "$1" >/dev/null 2>&1 || { echo "Missing required command: $1" >&2; exit 1; }
+}
+
+backup_if_exists() {
+  local target="$1"
+  if [ -L "$target" ] || [ -e "$target" ]; then
+    mkdir -p "$BACKUP_ROOT$(dirname "$target")"
+    mv "$target" "$BACKUP_ROOT$target"
+    echo "Backed up $target -> $BACKUP_ROOT$target"
+  fi
+}
+
+link_path() {
+  local src="$1"
+  local dest="$2"
+  mkdir -p "$(dirname "$dest")"
+  ln -sfn "$src" "$dest"
+  echo "Linked $dest -> $src"
+}
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Homebrew is required first: https://brew.sh" >&2
+  exit 1
+fi
+
+eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv)"
+
+brew bundle --file "$REPO_DIR/Brewfile"
+
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+[ -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ] || git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+[ -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+[ -d "$ZSH_CUSTOM/plugins/fast-syntax-highlighting" ] || git clone https://github.com/zdharma-continuum/fast-syntax-highlighting "$ZSH_CUSTOM/plugins/fast-syntax-highlighting"
+
+backup_if_exists "$HOME/.zshrc"
+backup_if_exists "$HOME/.config/ghostty/config"
+backup_if_exists "$HOME/.config/ohmyposh/zen.toml"
+backup_if_exists "$HOME/Library/Application Support/Zed/settings.json"
+backup_if_exists "$HOME/Library/Application Support/Zed/keymap.json"
+backup_if_exists "$HOME/.config/yazi/yazi.toml"
+backup_if_exists "$HOME/.config/lazygit/config.yml"
+
+link_path "$REPO_DIR/.zshrc" "$HOME/.zshrc"
+link_path "$REPO_DIR/.config/ghostty/config" "$HOME/.config/ghostty/config"
+link_path "$REPO_DIR/.config/ohmyposh/zen.toml" "$HOME/.config/ohmyposh/zen.toml"
+link_path "$REPO_DIR/.config/yazi/yazi.toml" "$HOME/.config/yazi/yazi.toml"
+link_path "$REPO_DIR/.config/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
+link_path "$REPO_DIR/.config/zed/settings.json" "$HOME/Library/Application Support/Zed/settings.json"
+link_path "$REPO_DIR/.config/zed/keymap.json" "$HOME/Library/Application Support/Zed/keymap.json"
+
+chmod go-w "$(brew --prefix)/share" || true
+chmod -R go-w "$(brew --prefix)/share/zsh" || true
+
+export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+rustup default stable || true
+
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd --shell zsh)"
+  fnm install --lts
+  fnm default lts-latest
+  corepack enable || true
+fi
+
+echo
+echo "Done. Restart Ghostty/Zed or run: exec zsh"
