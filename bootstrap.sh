@@ -70,6 +70,7 @@ if command -v fnm >/dev/null 2>&1; then
   fnm install --lts
   fnm default lts-latest
   corepack enable || true
+  corepack prepare pnpm@latest --activate || true
 fi
 
 echo
