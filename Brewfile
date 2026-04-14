@@ -1,3 +1,4 @@
+tap "nikitabobko/tap"
 tap "oven-sh/bun"
 
 brew "awscli"
@@ -37,7 +38,7 @@ brew "zsh-completions"
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-jetbrains-mono"
-cask "aerospace"
+cask "nikitabobko/tap/aerospace"
 cask "codex"
 cask "ghostty"
 cask "obsidian"
