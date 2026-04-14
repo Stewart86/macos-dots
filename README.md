@@ -13,7 +13,7 @@ git clone https://github.com/Stewart86/macos-dots.git ~/macos-dots && cd ~/macos
 - installs Homebrew formulae and app casks from `Brewfile`
 - installs Oh My Zsh and core plugins
 - links the tracked config files into `~`
-- installs a basic AeroSpace tiling setup, defaulting to vertical splits
+- installs a basic AeroSpace tiling setup
 - bootstraps OpenCode CLI and Codex CLI/app
 - keeps backups of existing files under `~/.dotfiles-backups/<timestamp>/`
 
