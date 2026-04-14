@@ -8,13 +8,21 @@ Mac-focused dotfiles and bootstrap for Stewart's setup.
 git clone https://github.com/Stewart86/macos-dots.git ~/macos-dots && cd ~/macos-dots && ./bootstrap.sh
 ```
 
+## Codex desktop app
+
+The Homebrew `codex` cask is the terminal Codex package, not the desktop app.
+
+Install the actual desktop app from OpenAI directly:
+https://developers.openai.com/codex/app
+
 ## What it does
 
 - installs Homebrew formulae and app casks from `Brewfile`
 - installs Oh My Zsh and core plugins
 - links the tracked config files into `~`
 - installs a basic AeroSpace tiling setup
-- bootstraps OpenCode CLI and Codex CLI/app
+- bootstraps OpenCode CLI and Codex CLI
+- documents Codex desktop app install separately
 - keeps backups of existing files under `~/.dotfiles-backups/<timestamp>/`
 
 ## Notes
