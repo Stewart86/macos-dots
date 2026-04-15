@@ -13,6 +13,8 @@ defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 defaults write NSGlobalDomain com.apple.mouse.linear -bool true
 defaults write NSGlobalDomain com.apple.mouse.scaling -float 1.5
 defaults write NSGlobalDomain com.apple.scrollwheel.scaling -float 0.75
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.trackpad.forceClick -bool true
 
 # Finder
@@ -49,7 +51,7 @@ defaults write com.apple.menuextra.clock ShowDayOfWeek -bool false
 
 # Trackpad
 for domain in com.apple.AppleMultitouchTrackpad com.apple.driver.AppleBluetoothMultitouch.trackpad; do
-  defaults write "$domain" Clicking -int 0
+  defaults write "$domain" Clicking -int 1
   defaults write "$domain" TrackpadRightClick -int 1
   defaults write "$domain" TrackpadScroll -int 1
   defaults write "$domain" TrackpadMomentumScroll -int 1

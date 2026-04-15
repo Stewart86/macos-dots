@@ -26,6 +26,17 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 [ -f "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh" ] && source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 [ -f "$(brew --prefix)/opt/fzf/shell/completion.zsh" ] && source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
 
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+if [[ -o interactive ]] && command -v fastfetch >/dev/null 2>&1; then
+  if [[ -f "$HOME/macos-dots/assets/mac-logo.png" ]]; then
+    fastfetch --kitty-direct "$HOME/macos-dots/assets/mac-logo.png" --logo-width 14 --logo-height 7 --separator "  " --structure "OS:Shell:Terminal:WM:Packages:Memory:Uptime"
+  else
+    fastfetch --logo none --separator "  " --structure "OS:Shell:Terminal:WM:Packages:Memory:Uptime"
+  fi
+fi
+
 alias c='clear'
 alias nf='fastfetch'
 alias ff='fastfetch'
