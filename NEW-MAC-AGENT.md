@@ -23,6 +23,7 @@ Use this repository as the source of truth for setting up Stewart's new Mac.
 - Homebrew packages and casks in [Brewfile](/Users/stewart.w/macos-dots/Brewfile)
 - shell, AeroSpace, Ghostty, Yazi, Lazygit, Neovim, Zed, oh-my-posh, and opencode config files
 - a curated subset of macOS defaults for Finder, Dock, menu bar clock, mouse, trackpad, and screenshots
+- tracked LaunchAgents for Stats and Itsycal so they start at login
 
 ## What still needs manual setup
 

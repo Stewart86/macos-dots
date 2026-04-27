@@ -25,13 +25,13 @@ if [[ ! -f "$_omz_cached_init" || "$ZSH/oh-my-zsh.sh" -nt "$_omz_cached_init" ]]
   command sed \
     -e 's/compinit -i -d "\$ZSH_COMPDUMP"/compinit -C -i -d "$ZSH_COMPDUMP"/' \
     -e 's/compinit -u -d "\$ZSH_COMPDUMP"/compinit -C -u -d "$ZSH_COMPDUMP"/' \
-    "$ZSH/oh-my-zsh.sh" >| "$_omz_cached_init"
+    "$ZSH/oh-my-zsh.sh" >|"$_omz_cached_init"
 fi
 
 source "$_omz_cached_init"
 
 eval "$(fnm env --use-on-cd --shell zsh)"
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
 [ -f "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh" ] && source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
@@ -58,8 +58,8 @@ if [[ -o interactive ]] && command -v fastfetch >/dev/null 2>&1; then
   if [[ -f "$_fastfetch_cache" ]]; then
     command cat -- "$_fastfetch_cache"
 
-    if (( $(date +%s) - $(stat -f %m "$_fastfetch_cache") > _fastfetch_ttl )); then
-      (fastfetch --pipe false "${_fastfetch_logo_args[@]}" >| "$_fastfetch_cache") >/dev/null 2>&1 &
+    if (($(date +%s) - $(stat -f %m "$_fastfetch_cache") > _fastfetch_ttl)); then
+      (fastfetch --pipe false "${_fastfetch_logo_args[@]}" >|"$_fastfetch_cache") >/dev/null 2>&1 &
     fi
   else
     mkdir -p "$HOME/.cache"
@@ -77,6 +77,16 @@ alias vi='nvim'
 alias vim='nvim'
 alias lg='lazygit'
 
+gclone() {
+  if [[ "$#" -eq 0 ]]; then
+    echo "usage: gclone <repo> [git-clone-args...]" >&2
+    return 2
+  fi
+
+  mkdir -p "$HOME/Projects"
+  (cd "$HOME/Projects" && command git clone "$@")
+}
+
 ff() {
   fastfetch "${_fastfetch_logo_args[@]}" "$@"
 }
@@ -89,6 +99,7 @@ function y() {
   local tmp="$(mktemp -t yazi-cwd.XXXXXX)" cwd
   yazi "$@" --cwd-file="$tmp"
   if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    command zoxide add -- "$cwd" >/dev/null 2>&1
     builtin cd -- "$cwd"
   fi
   rm -f -- "$tmp"

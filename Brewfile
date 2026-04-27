@@ -1,8 +1,10 @@
 tap "nikitabobko/tap"
+tap "FelixKratz/formulae"
 tap "oven-sh/bun"
 
 brew "awscli"
 brew "bat"
+brew "felixkratz/formulae/borders"
 brew "btop"
 brew "bun"
 brew "eza"

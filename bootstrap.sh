@@ -34,6 +34,10 @@ eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shell
 
 brew bundle --file "$REPO_DIR/Brewfile"
 
+if command -v borders >/dev/null 2>&1; then
+  brew services start felixkratz/formulae/borders || true
+fi
+
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
@@ -56,6 +60,8 @@ backup_if_exists "$HOME/.config/opencode/opencode.jsonc"
 backup_if_exists "$HOME/.config/opencode/agent"
 backup_if_exists "$HOME/.config/opencode/skill"
 backup_if_exists "$HOME/.config/nvim"
+backup_if_exists "$HOME/Library/LaunchAgents/eu.exelban.Stats.plist"
+backup_if_exists "$HOME/Library/LaunchAgents/com.mowglii.ItsycalApp.plist"
 
 link_path "$REPO_DIR/.zshrc" "$HOME/.zshrc"
 link_path "$REPO_DIR/.hushlogin" "$HOME/.hushlogin"
@@ -70,6 +76,15 @@ link_path "$REPO_DIR/.config/opencode/skill" "$HOME/.config/opencode/skill"
 link_path "$REPO_DIR/.config/zed/settings.json" "$HOME/Library/Application Support/Zed/settings.json"
 link_path "$REPO_DIR/.config/zed/keymap.json" "$HOME/Library/Application Support/Zed/keymap.json"
 link_path "$REPO_DIR/.config/nvim" "$HOME/.config/nvim"
+link_path "$REPO_DIR/Library/LaunchAgents/eu.exelban.Stats.plist" "$HOME/Library/LaunchAgents/eu.exelban.Stats.plist"
+link_path "$REPO_DIR/Library/LaunchAgents/com.mowglii.ItsycalApp.plist" "$HOME/Library/LaunchAgents/com.mowglii.ItsycalApp.plist"
+
+launchctl bootout "gui/$(id -u)" "$HOME/Library/LaunchAgents/eu.exelban.Stats.plist" >/dev/null 2>&1 || true
+launchctl bootstrap "gui/$(id -u)" "$HOME/Library/LaunchAgents/eu.exelban.Stats.plist" || true
+launchctl kickstart -k "gui/$(id -u)/eu.exelban.Stats" >/dev/null 2>&1 || true
+launchctl bootout "gui/$(id -u)" "$HOME/Library/LaunchAgents/com.mowglii.ItsycalApp.plist" >/dev/null 2>&1 || true
+launchctl bootstrap "gui/$(id -u)" "$HOME/Library/LaunchAgents/com.mowglii.ItsycalApp.plist" || true
+launchctl kickstart -k "gui/$(id -u)/com.mowglii.ItsycalApp" >/dev/null 2>&1 || true
 
 chmod go-w "$(brew --prefix)/share" || true
 chmod -R go-w "$(brew --prefix)/share/zsh" || true

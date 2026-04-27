@@ -20,6 +20,7 @@ https://developers.openai.com/codex/app
 - installs Homebrew formulae and app casks from `Brewfile`
 - installs Oh My Zsh and core plugins
 - links the tracked config files into `~`
+- installs tracked LaunchAgents for login-time apps
 - installs a basic AeroSpace tiling setup
 - bootstraps OpenCode CLI and Codex CLI
 - documents Codex desktop app install separately
