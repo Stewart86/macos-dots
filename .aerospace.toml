@@ -51,6 +51,10 @@ if.app-id = 'com.apple.ActivityMonitor'
 run = 'layout floating'
 
 [[on-window-detected]]
+if.app-id = 'com.apple.QuickTimePlayerX'
+run = 'layout floating'
+
+[[on-window-detected]]
 if.window-title-regex-substring = 'bitwarden'
 run = 'layout floating'
 
@@ -58,14 +62,6 @@ run = 'layout floating'
 if.app-id = 'com.openai.codex'
 if.window-title-regex-substring = 'Select Project Root'
 run = 'layout floating'
-
-[[on-window-detected]]
-if.app-id = 'com.openai.codex'
-run = 'move-node-to-workspace 3'
-
-[[on-window-detected]]
-if.app-id = 'com.openai.codex.helper'
-run = 'move-node-to-workspace 3'
 
 [gaps]
 inner.horizontal = 8
@@ -79,8 +75,7 @@ outer.right = 8
 [mode.main.binding]
 
 # Apps
-alt-enter = 'exec-and-forget open -na Ghostty'
-alt-shift-enter = 'layout floating tiling'
+alt-enter = 'exec-and-forget open -a Ghostty'
 alt-slash = ['flatten-workspace-tree', 'layout tiles horizontal vertical']
 alt-comma = ['flatten-workspace-tree', 'layout tiles horizontal vertical']
 alt-f = 'fullscreen'

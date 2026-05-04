@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brew Install"
+  short_description: "Install apps through Brewfile"
+  default_prompt: "Use $brew-install to install an app with Homebrew and keep the Brewfile updated."

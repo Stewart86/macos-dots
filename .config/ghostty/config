@@ -11,6 +11,8 @@ grapheme-width-method = unicode
 background-opacity = 0.85
 window-decoration = true
 window-padding-balance = true
+quick-terminal-position = center
+quick-terminal-size = 1100px,700px
 
 quit-after-last-window-closed = true
 quit-after-last-window-closed-delay = 5m
@@ -19,3 +21,4 @@ keybind = ctrl+shift+k=scroll_page_up
 keybind = ctrl+shift+j=scroll_page_down
 keybind = shift+enter=text:\n
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
+keybind = global:alt+shift+enter=toggle_quick_terminal

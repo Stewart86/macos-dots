@@ -78,7 +78,7 @@ alias vim='nvim'
 alias lg='lazygit'
 
 gclone() {
-  if [[ "$#" -eq 0 ]]; then
+  if [[ "$" -eq 0 ]]; then
     echo "usage: gclone <repo> [git-clone-args...]" >&2
     return 2
   fi
@@ -103,4 +103,9 @@ function y() {
     builtin cd -- "$cwd"
   fi
   rm -f -- "$tmp"
+}
+
+function wbl() {
+  caffeinate -dimsu &
+  osascript -e 'tell application "System Events" to keystroke "q" using {control down, command down}'
 }

@@ -1,0 +1,4 @@
+[mgr]
+prepend_keymap = [
+  { on = "C", run = 'shell "zip -r .zip %h" --cursor=7 --interactive', desc = "Zip hovered item" },
+]
